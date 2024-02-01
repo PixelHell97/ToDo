@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <!-- My app colors -->
+    <color name="splash_background">#060E1E</color>
+    <color name="on_secondary">#060E1E</color>
+    <color name="card_bg">#141922</color>
+    <color name="bottom_nav_bg_color">#141922</color>
+    <color name="activity_bg_color">#060E1E</color>
+    <color name="text_color">@color/on_secondary</color>
+    <color name="time_text_color">@color/white</color>
+    <color name="ic_color">@color/white</color>
+</resources>

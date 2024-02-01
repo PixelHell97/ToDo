@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">ToDo</string>
+    <string name="setting">الإعدادات</string>
+    <string name="language">اللغه</string>
+    <string name="mode">المظهر</string>
+    <string name="save_changes">حفظ التعديل</string>
+    <string name="edit_text">تعديل</string>
+    <string name="date">التاريخ</string>
+    <string name="time">الوقت</string>
+    <string name="title">العنوان</string>
+    <string name="description">الوصف</string>
+    <string name="add_new_task">اضافة مهمه جديده</string>
+    <string-array name="mode_array">
+        <item>
+            نهار
+        </item>
+        <item>
+            مظلم
+        </item>
+    </string-array>
+</resources>
