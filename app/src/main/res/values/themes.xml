@@ -18,4 +18,9 @@
         <item name="android:statusBarColor">@color/lime</item>
         <item name="android:windowLightStatusBar">true</item>
     </style>
+
+    <style name="ThemeOverlay.App.TimePicker" parent="Widget.Material3.MaterialTimePicker.Clock">
+        <item name="clockFaceBackgroundColor">@color/lime</item>
+        <item name="clockHandColor">@color/blue</item>
+    </style>
 </resources>

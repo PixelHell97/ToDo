@@ -1,24 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.zerobranch.layout.SwipeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:background="@color/lime"
-    android:padding="8dp"
-    app:draggedItem="@id/drag_item"
-    app:leftItem="@id/dragged_delete"
-    app:swipeDirection="right">
+    android:layout_margin="8dp"
+    android:elevation="10dp"
+    app:cardCornerRadius="20dp">
 
-    <androidx.cardview.widget.CardView
+    <com.zerobranch.layout.SwipeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:cardCornerRadius="20dp">
+        android:background="@color/red"
+        app:draggedItem="@id/drag_item"
+        app:leftItem="@id/btn_delete_task"
+        app:rightItem="@id/btn_delete_task"
+        app:swipeDirection="right|left">
+
+        <ImageButton
+            android:id="@+id/btn_delete_task"
+            android:layout_width="85dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="start|center"
+            android:background="@drawable/rounded_red"
+            android:src="@drawable/ic_delete" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/drag_item"
             android:layout_width="match_parent"
-            android:layout_height="120dp">
+            android:layout_height="120dp"
+            android:background="@drawable/rounded_bottom_nav">
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/dragging_bar"
@@ -31,26 +42,24 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-            android:id="@+id/task_name"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="10dp"
-            android:ellipsize="end"
-            android:fontFamily="@font/poppins_bold"
-            android:lines="1"
-            android:textColor="@color/blue"
-            android:textSize="14sp"
-            app:layout_constraintEnd_toStartOf="@id/task_isDone_btn"
-            app:layout_constraintStart_toEndOf="@id/dragging_bar"
-            app:layout_constraintTop_toTopOf="@id/dragging_bar"
-            tools:text="Play Basket Ball" />
+                android:id="@+id/task_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:fontFamily="@font/poppins_bold"
+                android:lines="1"
+                android:textColor="@color/blue"
+                android:textSize="14sp"
+                app:layout_constraintStart_toEndOf="@id/dragging_bar"
+                app:layout_constraintTop_toTopOf="@id/dragging_bar"
+                tools:text="لعب كرة السله" />
 
             <TextView
                 android:id="@+id/task_time"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="10dp"
@@ -61,8 +70,6 @@
                 android:textSize="12sp"
                 app:drawableStartCompat="@drawable/ic_time"
                 app:layout_constraintBottom_toBottomOf="@id/dragging_bar"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintEnd_toStartOf="@id/task_isDone_btn"
                 app:layout_constraintStart_toEndOf="@id/dragging_bar"
                 app:layout_constraintTop_toBottomOf="@id/task_name"
                 tools:text="28/12/2023" />
@@ -72,18 +79,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="20dp"
-                android:background="@drawable/check_mark"
+                android:src="@drawable/check_mark"
+                android:background="@android:color/transparent"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <ImageButton
-            android:id="@+id/dragged_delete"
-            android:layout_width="85dp"
-            android:layout_height="match_parent"
-            android:layout_gravity="start|center"
-            android:background="@color/red"
-            android:src="@drawable/ic_delete" />
-    </androidx.cardview.widget.CardView>
-</com.zerobranch.layout.SwipeLayout>
+    </com.zerobranch.layout.SwipeLayout>
+</androidx.cardview.widget.CardView>

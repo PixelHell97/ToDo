@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<androidx.cardview.widget.CardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="16dp"
-    android:orientation="vertical"
-    app:cardCornerRadius="24dp"
+    android:background="@android:color/transparent"
     android:backgroundTint="@color/bottom_nav_bg_color"
+    android:orientation="vertical"
+    android:padding="16dp"
+    app:cardCornerRadius="24dp"
     tools:context=".ui.home.addTask.AddTaskBottomSheet">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="16dp"
-        android:orientation="vertical">
+        android:background="@android:color/transparent"
+        android:orientation="vertical"
+        android:padding="16dp">
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/view1"
@@ -63,14 +63,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
         </com.google.android.material.textfield.TextInputLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:weightSum="2"
             android:layout_marginHorizontal="16dp"
             android:layout_marginTop="24dp"
-            android:baselineAligned="false">
+            android:baselineAligned="false"
+            android:orientation="horizontal"
+            android:weightSum="2">
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/date_layout"
@@ -87,8 +88,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/date"
-                    app:hintTextColor="@color/blue"
-                    android:padding="12dp"/>
+                    android:padding="12dp"
+                    app:hintTextColor="@color/blue" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -107,7 +108,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/time"
-                    android:padding="12dp"/>
+                    android:padding="12dp" />
             </com.google.android.material.textfield.TextInputLayout>
         </LinearLayout>
 
@@ -115,9 +116,9 @@
             android:id="@+id/add_task"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center|bottom"
             android:layout_margin="20dp"
-            android:src="@drawable/ic_awesome_check"
             android:backgroundTint="@color/blue"
-            android:layout_gravity="center|bottom"/>
+            android:src="@drawable/ic_awesome_check" />
     </LinearLayout>
 </androidx.cardview.widget.CardView>

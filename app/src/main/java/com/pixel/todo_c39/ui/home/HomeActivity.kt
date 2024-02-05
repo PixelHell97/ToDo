@@ -3,12 +3,9 @@ package com.pixel.todo_c39.ui.home
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import androidx.navigation.NavController
-import androidx.navigation.findNavController
-import androidx.navigation.ui.setupActionBarWithNavController
-import androidx.navigation.ui.setupWithNavController
 import com.pixel.todo_c39.R
 import com.pixel.todo_c39.databinding.ActivityHomeBinding
+import com.pixel.todo_c39.ui.home.addTask.AddTaskBottomSheet
 import com.pixel.todo_c39.ui.home.settings.SettingsFragment
 import com.pixel.todo_c39.ui.home.tasksList.TasksListFragment
 
@@ -23,26 +20,32 @@ class HomeActivity : AppCompatActivity() {
 
     private fun setupView() {
         binding.content.addTaskFab.setOnClickListener {
-            findNavController(R.id.fragment_container).navigate(R.id.navigate_to_addTaskBottomSheet)
+            showAddTaskBottomSheet()
         }
-        //binding.homeBottomNavBar.setupWithNavController(findNavController(R.id.fragment_container))
-        binding.content.homeBottomNavBar.setOnItemSelectedListener { item ->
-            val fragment = when (item.itemId) {
-                R.id.tasksListFragment -> {
-                    TasksListFragment()
+        binding.content
+            .homeBottomNavBar
+            .setOnItemSelectedListener {
+                val fragment = when (it.itemId) {
+                    R.id.nav_task_list_fragment -> {
+                        binding.fragmentTitle.setText(R.string.to_do_list)
+                        TasksListFragment()
+                    }
+                    R.id.nav_settings_fragment -> {
+                        binding.fragmentTitle.setText(R.string.settings)
+                        SettingsFragment()
+                    }
+                    else -> TasksListFragment()
                 }
-
-                R.id.settingsFragment -> {
-                    SettingsFragment()
-                }
-
-                else -> {
-                    TasksListFragment()
-                }
+                pushFragment(fragment)
+                true
             }
-            pushFragment(fragment)
-            true
-        }
+        binding.fragmentTitle.setText(R.string.to_do_list)
+        binding.content.homeBottomNavBar.selectedItemId = R.id.nav_task_list_fragment
+    }
+
+    private fun showAddTaskBottomSheet() {
+        val addTask = AddTaskBottomSheet()
+        addTask.show(supportFragmentManager, null)
     }
 
     private fun pushFragment(fragment: Fragment) {

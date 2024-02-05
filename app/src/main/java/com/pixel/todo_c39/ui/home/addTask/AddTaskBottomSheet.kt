@@ -11,7 +11,10 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.pixel.todo_c39.database.TaskDatabase
 import com.pixel.todo_c39.database.model.Task
 import com.pixel.todo_c39.databinding.BottomSheetAddTaskBinding
-import java.text.SimpleDateFormat
+import com.pixel.todo_c39.ui.formatDate
+import com.pixel.todo_c39.ui.formatTime
+import com.pixel.todo_c39.ui.getDateOnly
+import com.pixel.todo_c39.ui.getTimeOnly
 import java.util.Calendar
 
 
@@ -29,13 +32,7 @@ class AddTaskBottomSheet : BottomSheetDialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setUpViews()
-        closeBottomSheet()
     }
-
-    private fun closeBottomSheet() {
-        activity?.supportFragmentManager?.popBackStack()
-    }
-
 
     private fun setUpViews() {
         binding.addTask.setOnClickListener {
@@ -120,39 +117,6 @@ class AddTaskBottomSheet : BottomSheetDialogFragment() {
                 )
             )
         Toast.makeText(requireContext(), "Task saved successfully", Toast.LENGTH_LONG).show()
+        dismiss()
     }
-}
-
-fun Calendar.getTimeOnly(): Long {
-    val calendar = Calendar.getInstance()
-    calendar.set(
-        0, 0, 0,
-        get(Calendar.HOUR_OF_DAY),
-        get(Calendar.MINUTE),
-        0
-    )
-    calendar.set(Calendar.MILLISECOND, 0)
-    return calendar.timeInMillis
-}
-
-fun Calendar.getDateOnly(): Long {
-    val calendar = Calendar.getInstance()
-    calendar.set(
-        get(Calendar.YEAR),
-        get(Calendar.MONTH),
-        get(Calendar.DAY_OF_MONTH),
-        0, 0, 0
-    )
-    calendar.set(Calendar.MILLISECOND, 0)
-    return calendar.timeInMillis
-}
-
-fun Calendar.formatTime(): String {
-    val formatter = SimpleDateFormat("hh:mm a")
-    return formatter.format(time)
-}
-
-fun Calendar.formatDate(): String {
-    val formatter = SimpleDateFormat("dd/MM/yyyy")
-    return formatter.format(time)
 }

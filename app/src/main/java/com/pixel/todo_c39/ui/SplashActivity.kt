@@ -1,11 +1,14 @@
 package com.pixel.todo_c39.ui
 
 import android.content.Intent
+import android.content.res.Configuration
 import android.os.Bundle
 import android.os.Handler
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import com.pixel.todo_c39.R
 import com.pixel.todo_c39.ui.home.HomeActivity
+import java.util.Locale
 
 class SplashActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

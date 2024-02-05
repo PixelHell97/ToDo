@@ -2,11 +2,11 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/tasksListFragment"
+        android:id="@+id/nav_task_list_fragment"
         android:icon="@drawable/ic_task_list"
         android:title="@string/task_list" />
     <item
-        android:id="@+id/settingsFragment"
+        android:id="@+id/nav_settings_fragment"
         android:icon="@drawable/ic_settings"
         android:title="@string/settings" />
 </menu>

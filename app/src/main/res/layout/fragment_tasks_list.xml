@@ -52,10 +52,9 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        android:padding="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/top_view"
+        app:layout_constraintTop_toBottomOf="@id/card_view"
         tools:listitem="@layout/item_task" />
 </androidx.constraintlayout.widget.ConstraintLayout>

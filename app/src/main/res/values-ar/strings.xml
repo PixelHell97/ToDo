@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">ToDo</string>
     <string name="setting">الإعدادات</string>
     <string name="language">اللغه</string>
     <string name="mode">المظهر</string>
@@ -13,10 +12,13 @@
     <string name="add_new_task">اضافة مهمه جديده</string>
     <string-array name="mode_array">
         <item>
-            نهار
+            نهاري
         </item>
         <item>
-            مظلم
+            ليلي
         </item>
     </string-array>
+    <string name="task_list">قائمة المهام</string>
+    <string name="settings">الإعدادات</string>
+    <string name="to_do_list">قائمة المهام</string>
 </resources>
