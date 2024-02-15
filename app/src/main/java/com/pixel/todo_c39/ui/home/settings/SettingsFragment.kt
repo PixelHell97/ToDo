@@ -16,7 +16,7 @@ import java.util.Locale
 class SettingsFragment : Fragment() {
     private lateinit var binding: FragmentSettingsBinding
     private lateinit var languageArrayAdapter: ArrayAdapter<String>
-    private var settings = Settings()
+    private var settings = Settings
 
     override fun onResume() {
         super.onResume()
