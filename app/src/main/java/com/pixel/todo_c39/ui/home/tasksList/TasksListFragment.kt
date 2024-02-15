@@ -13,8 +13,6 @@ import com.pixel.todo_c39.ui.Constants
 import com.pixel.todo_c39.ui.getDateOnly
 import com.pixel.todo_c39.ui.home.editTask.EditTaskActivity
 import com.prolificinteractive.materialcalendarview.CalendarDay
-import com.zerobranch.layout.SwipeLayout
-import com.zerobranch.layout.SwipeLayout.SwipeActionsListener
 import java.util.Calendar
 
 class TasksListFragment : Fragment() {
@@ -35,8 +33,9 @@ class TasksListFragment : Fragment() {
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?,
     ): View {
         binding = FragmentTasksListBinding.inflate(inflater, container, false)
         return binding.root
@@ -53,7 +52,7 @@ class TasksListFragment : Fragment() {
     private fun taskDone() {
         adapter.onIsDoneClickListener = TaskAdapter
             .OnItemClickListener { item, position ->
-                item.isDone = true
+                item.isDone = !item.isDone
                 TaskDatabase.getInstance(requireContext())
                     .getTaskDao()
                     .updateTask(item)
@@ -63,7 +62,7 @@ class TasksListFragment : Fragment() {
 
     private fun deleteTask() {
         adapter.onDeleteClickListener = TaskAdapter
-            .OnItemClickListener { item, position ->
+            .OnItemClickListener { item, _ ->
                 TaskDatabase.getInstance(requireContext())
                     .getTaskDao()
                     .deleteTask(item)
@@ -88,7 +87,7 @@ class TasksListFragment : Fragment() {
         binding.calendarView.selectedDate = CalendarDay.today()
         binding.calendarView.setOnDateChangedListener { _, date, selected ->
             if (selected) {
-                currentDate.set(date.year,date.month-1,date.day)
+                currentDate.set(date.year, date.month - 1, date.day)
                 retrieveData()
             }
         }

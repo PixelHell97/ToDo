@@ -7,19 +7,19 @@ import androidx.room.RoomDatabase
 import com.pixel.todo_c39.database.dao.TaskDao
 import com.pixel.todo_c39.database.model.Task
 
-@Database(entities = [Task::class], version = 1, exportSchema = false)
-abstract class TaskDatabase: RoomDatabase() {
+@Database(entities = [Task::class], version = 2, exportSchema = false)
+abstract class TaskDatabase : RoomDatabase() {
     abstract fun getTaskDao(): TaskDao
 
     companion object {
         private var database: TaskDatabase? = null
-        const val database_KAY = "taskDatabase"
+        private const val database_KAY = "taskDatabase"
         fun getInstance(context: Context): TaskDatabase {
             if (database == null) {
                 database = Room.databaseBuilder(
                     context.applicationContext,
                     TaskDatabase::class.java,
-                    database_KAY
+                    database_KAY,
                 )
                     .allowMainThreadQueries()
                     .fallbackToDestructiveMigration()

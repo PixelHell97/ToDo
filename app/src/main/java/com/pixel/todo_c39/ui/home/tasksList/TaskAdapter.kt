@@ -18,11 +18,11 @@ class TaskAdapter(private var tasksList: MutableList<Task>? = null) :
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val binding = ItemTaskBinding.inflate(
             LayoutInflater.from(parent.context),
-            parent, false
+            parent,
+            false,
         )
         return ViewHolder(binding)
     }
-
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
@@ -31,17 +31,17 @@ class TaskAdapter(private var tasksList: MutableList<Task>? = null) :
             .setInstant(task.time!!)
             .build()
         holder.bind(task, calendar)
-        if (onTaskClickListener!=null) {
+        if (onTaskClickListener != null) {
             holder.binding.dragItem.setOnClickListener {
                 onTaskClickListener?.onItemClick(task, position)
             }
         }
-        if (onIsDoneClickListener!=null) {
+        if (onIsDoneClickListener != null) {
             holder.binding.taskIsDoneBtn.setOnClickListener {
                 onIsDoneClickListener?.onItemClick(task, position)
             }
         }
-        if (onDeleteClickListener!=null) {
+        if (onDeleteClickListener != null) {
             holder.binding.btnDeleteTask.setOnClickListener {
                 onDeleteClickListener?.onItemClick(task, position)
             }
@@ -63,17 +63,21 @@ class TaskAdapter(private var tasksList: MutableList<Task>? = null) :
     var onDeleteClickListener: OnItemClickListener? = null
 
     fun interface OnItemClickListener {
-        fun onItemClick(item: Task, position: Int)
+        fun onItemClick(item: Task, id: Int)
     }
 
     class ViewHolder(val binding: ItemTaskBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(task: Task, calendar: Calendar) {
             binding.taskName.text = task.title.toString()
             binding.taskTime.text = calendar.formatTime()
-            if (task.isDone == true) {
+            if (task.isDone) {
                 binding.taskIsDoneBtn.setImageResource(R.drawable.ic_done)
                 binding.taskName.setTextColor(Color.GREEN)
                 binding.draggingBar.setImageResource(R.drawable.dragging_bar_done)
+            } else {
+                binding.taskIsDoneBtn.setImageResource(R.drawable.check_mark)
+                binding.taskName.setTextColor(Color.parseColor("#5D9CEC"))
+                binding.draggingBar.setImageResource(R.drawable.dragging_bar)
             }
         }
     }

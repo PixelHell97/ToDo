@@ -17,13 +17,13 @@ import com.pixel.todo_c39.ui.getDateOnly
 import com.pixel.todo_c39.ui.getTimeOnly
 import java.util.Calendar
 
-
 class AddTaskBottomSheet : BottomSheetDialogFragment() {
     private lateinit var binding: BottomSheetAddTaskBinding
     private val calender = Calendar.getInstance()
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?,
     ): View {
         binding = BottomSheetAddTaskBinding.inflate(inflater, container, false)
         return binding.root
@@ -57,7 +57,7 @@ class AddTaskBottomSheet : BottomSheetDialogFragment() {
             },
             calender.get(Calendar.HOUR_OF_DAY),
             calender.get(Calendar.MINUTE),
-            false
+            false,
         )
         timePicker.show()
     }
@@ -103,8 +103,9 @@ class AddTaskBottomSheet : BottomSheetDialogFragment() {
     }
 
     private fun addTask() {
-        if (!isValidTask())
+        if (!isValidTask()) {
             return
+        }
         TaskDatabase.getInstance(requireContext())
             .getTaskDao()
             .insertTask(
@@ -113,8 +114,8 @@ class AddTaskBottomSheet : BottomSheetDialogFragment() {
                     descriotion = binding.descriptionEditText.text.toString(),
                     date = calender.getDateOnly(),
                     time = calender.getTimeOnly(),
-                    isDone = false
-                )
+                    isDone = false,
+                ),
             )
         Toast.makeText(requireContext(), "Task saved successfully", Toast.LENGTH_LONG).show()
         dismiss()
