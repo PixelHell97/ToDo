@@ -1,5 +1,6 @@
 package com.pixel.todo_c39.ui.home.tasksList
 
+import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -45,7 +46,7 @@ class TasksListFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         initRecycler()
         editTask()
-        deleteTask()
+        onDeleteTask()
         taskDone()
     }
 
@@ -60,14 +61,39 @@ class TasksListFragment : Fragment() {
             }
     }
 
-    private fun deleteTask() {
+    private fun onDeleteTask() {
         adapter.onDeleteClickListener = TaskAdapter
             .OnItemClickListener { item, _ ->
-                TaskDatabase.getInstance(requireContext())
-                    .getTaskDao()
-                    .deleteTask(item)
-                retrieveData()
+                showDialog {
+                    onDelete(item)
+                }
             }
+    }
+
+    private fun onDelete(item: Task) {
+        TaskDatabase.getInstance(requireContext())
+            .getTaskDao()
+            .deleteTask(item)
+        retrieveData()
+    }
+
+    private fun showDialog(
+        posActionCallBack: (() -> Unit)? = null,
+    ) {
+        val onDeleteDialog = AlertDialog.Builder(requireContext())
+        onDeleteDialog.setMessage("Do you want to delete this task?")
+            .setPositiveButton(
+                "Delete",
+            ) { dialog, _ ->
+                dialog.dismiss()
+                posActionCallBack?.invoke()
+            }
+            .setNegativeButton(
+                "Cancel",
+            ) { dialog, _ ->
+                dialog.dismiss()
+            }
+        onDeleteDialog.show()
     }
 
     private fun editTask() {

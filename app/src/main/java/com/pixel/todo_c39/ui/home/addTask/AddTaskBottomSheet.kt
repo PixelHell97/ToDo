@@ -49,7 +49,7 @@ class AddTaskBottomSheet : BottomSheetDialogFragment() {
     private fun showTimeDialog() {
         val timePicker = TimePickerDialog(
             requireContext(),
-            { view, hourOfDay, minute ->
+            { _, hourOfDay, minute ->
                 calender.set(Calendar.HOUR_OF_DAY, hourOfDay)
                 calender.set(Calendar.MINUTE, minute)
                 binding.timeEditText.text = calender.formatTime()
@@ -64,7 +64,7 @@ class AddTaskBottomSheet : BottomSheetDialogFragment() {
 
     private fun showDateDialog() {
         val datePicker = DatePickerDialog(requireContext())
-        datePicker.setOnDateSetListener { view, year, month, dayOfMonth ->
+        datePicker.setOnDateSetListener { _, year, month, dayOfMonth ->
             calender.set(Calendar.YEAR, year)
             calender.set(Calendar.MONTH, month)
             calender.set(Calendar.DAY_OF_MONTH, dayOfMonth)
@@ -117,7 +117,11 @@ class AddTaskBottomSheet : BottomSheetDialogFragment() {
                     isDone = false,
                 ),
             )
-        Toast.makeText(requireContext(), "Task saved successfully", Toast.LENGTH_LONG).show()
+        Toast.makeText(
+            requireContext(),
+            "Task saved successfully",
+            Toast.LENGTH_LONG,
+        ).show()
         dismiss()
     }
 }
