@@ -21,4 +21,7 @@
     <string name="task_list">قائمة المهام</string>
     <string name="settings">الإعدادات</string>
     <string name="to_do_list">قائمة المهام</string>
+    <string name="do_you_want_to_delete_this_task">هل انت متأكد من انك تريد إزالة هذة المهمة؟</string>
+    <string name="delete">ازاله</string>
+    <string name="cancel">الغاء</string>
 </resources>

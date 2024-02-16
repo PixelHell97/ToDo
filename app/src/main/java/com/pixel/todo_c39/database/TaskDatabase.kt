@@ -7,7 +7,7 @@ import androidx.room.RoomDatabase
 import com.pixel.todo_c39.database.dao.TaskDao
 import com.pixel.todo_c39.database.model.Task
 
-@Database(entities = [Task::class], version = 2, exportSchema = false)
+@Database(entities = [Task::class], version = 3, exportSchema = false)
 abstract class TaskDatabase : RoomDatabase() {
     abstract fun getTaskDao(): TaskDao
 

@@ -3,6 +3,7 @@ package com.pixel.todo_c39.ui.home.tasksList
 import android.graphics.Color
 import android.os.Build
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.RecyclerView
@@ -33,17 +34,17 @@ class TaskAdapter(private var tasksList: MutableList<Task>? = null) :
         holder.bind(task, calendar)
         if (onTaskClickListener != null) {
             holder.binding.dragItem.setOnClickListener {
-                onTaskClickListener?.onItemClick(task, position)
+                onTaskClickListener?.onItemClick(task, position, holder.itemView)
             }
         }
         if (onIsDoneClickListener != null) {
             holder.binding.taskIsDoneBtn.setOnClickListener {
-                onIsDoneClickListener?.onItemClick(task, position)
+                onIsDoneClickListener?.onItemClick(task, position, holder.itemView)
             }
         }
         if (onDeleteClickListener != null) {
             holder.binding.btnDeleteTask.setOnClickListener {
-                onDeleteClickListener?.onItemClick(task, position)
+                onDeleteClickListener?.onItemClick(task, position, holder.itemView)
             }
         }
     }
@@ -55,7 +56,6 @@ class TaskAdapter(private var tasksList: MutableList<Task>? = null) :
         }
         tasksList?.clear()
         tasksList?.addAll(allTasks)
-        notifyDataSetChanged()
     }
 
     var onTaskClickListener: OnItemClickListener? = null
@@ -63,7 +63,7 @@ class TaskAdapter(private var tasksList: MutableList<Task>? = null) :
     var onDeleteClickListener: OnItemClickListener? = null
 
     fun interface OnItemClickListener {
-        fun onItemClick(item: Task, id: Int)
+        fun onItemClick(item: Task, id: Int, itemView: View)
     }
 
     class ViewHolder(val binding: ItemTaskBinding) : RecyclerView.ViewHolder(binding.root) {

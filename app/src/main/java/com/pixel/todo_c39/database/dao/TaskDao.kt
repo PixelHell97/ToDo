@@ -22,6 +22,6 @@ interface TaskDao {
     @Query("select * from Task")
     fun getAllTasks(): List<Task>
 
-    @Query("select * from Task where date = :date order by time DESC")
+    @Query("select * from Task where date = :date order by time ASC")
     fun getAllTasksByDate(date: Long): List<Task>
 }

@@ -9,6 +9,7 @@
     app:cardCornerRadius="20dp">
 
     <com.zerobranch.layout.SwipeLayout
+        android:id="@+id/swipe_to_delete_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/red"

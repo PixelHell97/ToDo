@@ -16,6 +16,9 @@
     <string name="settings">Settings</string>
     <string name="english" translatable="false">English</string>
     <string name="light" translatable="false">Light</string>
+    <string name="do_you_want_to_delete_this_task">Are you sure want to delete this task?</string>
+    <string name="delete">Delete</string>
+    <string name="cancel">Cancel</string>
     <string-array name="language_array">
         <item>
             English

@@ -1,5 +1,6 @@
 package com.pixel.todo_c39.ui.home.tasksList
 
+import android.animation.ObjectAnimator
 import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
@@ -52,7 +53,7 @@ class TasksListFragment : Fragment() {
 
     private fun taskDone() {
         adapter.onIsDoneClickListener = TaskAdapter
-            .OnItemClickListener { item, position ->
+            .OnItemClickListener { item, position, _ ->
                 item.isDone = !item.isDone
                 TaskDatabase.getInstance(requireContext())
                     .getTaskDao()
@@ -63,25 +64,31 @@ class TasksListFragment : Fragment() {
 
     private fun onDeleteTask() {
         adapter.onDeleteClickListener = TaskAdapter
-            .OnItemClickListener { item, _ ->
+            .OnItemClickListener { item, position, view ->
                 showDialog {
-                    onDelete(item)
+                    val animator = ObjectAnimator.ofFloat(
+                        view,
+                        "translationX",
+                        view.width.toFloat(),
+                    )
+                    TaskDatabase.getInstance(requireContext())
+                        .getTaskDao()
+                        .deleteTask(item)
+                    animator.duration = 300
+                    animator.start()
+                    adapter.notifyItemRemoved(position)
+                    //  retrieveData()
                 }
             }
-    }
-
-    private fun onDelete(item: Task) {
-        TaskDatabase.getInstance(requireContext())
-            .getTaskDao()
-            .deleteTask(item)
-        retrieveData()
     }
 
     private fun showDialog(
         posActionCallBack: (() -> Unit)? = null,
     ) {
         val onDeleteDialog = AlertDialog.Builder(requireContext())
-        onDeleteDialog.setMessage("Do you want to delete this task?")
+        onDeleteDialog
+            // .setView(inflater.inflate(R.layout.dialog_delete, null))
+            .setMessage("Do you want to delete this task?")
             .setPositiveButton(
                 "Delete",
             ) { dialog, _ ->
@@ -97,7 +104,7 @@ class TasksListFragment : Fragment() {
     }
 
     private fun editTask() {
-        adapter.onTaskClickListener = TaskAdapter.OnItemClickListener { item, _ ->
+        adapter.onTaskClickListener = TaskAdapter.OnItemClickListener { item, _, _ ->
             openEditActivity(item)
         }
     }
